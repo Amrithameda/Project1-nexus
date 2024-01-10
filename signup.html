@@ -60,7 +60,6 @@
             var isPasswordValid = validatePassword();
             var isConfirmPasswordValid = validateConfirmPassword();
 
-            // Return true only if all validations pass
             return isUsernameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid;
         }
     function validateUsername()
@@ -76,11 +75,11 @@
             var email = document.getElementById("email").value;
             var emailError = document.getElementById("emailError");
 
-            // Simple validation: Check if email contains the "@" symbol
+            
             var emailRegex = /@/;
             var isValid = emailRegex.test(email);
 
-            // Display error message if validation fails
+            
             emailError.textContent = isValid ? "" : "Invalid email address";
 
             return isValid;
@@ -90,10 +89,8 @@
             var password = document.getElementById("password").value;
             var passwordError = document.getElementById("passwordError");
 
-            // You can add more complex password validation logic here
-            var isValid = password.length >= 8; // For example, require a minimum length of 8 characters
 
-            // Display error message if validation fails
+            var isValid = password.length >= 8; 
             passwordError.textContent = isValid ? "" : "Password should be at least 8 characters long";
 
             return isValid;

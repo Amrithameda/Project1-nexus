@@ -1,0 +1,119 @@
+<html>
+
+<head>
+    <style>
+        body {
+            background-color: #FEE140;
+            background-image: linear-gradient(90deg, #FEE140 0%, #FA709A 100%);
+        }
+    </style>
+</head>
+
+<body>
+    <form id="myForm" action="/submit" method="post" onsubmit="thanks(event);">
+        <center>
+            name:<input type="text" name="fname" required><br>
+            username:<input type="text" id="username" oninput="validateUsername()" required>
+            <span id="usernameError" style="color: red;"></span><br>
+            emailid:<input type="text" id="email" oninput="validateEmail()" required>
+            <span id="emailError" style="color: red;"></span><br>
+            password:<input type="password" id="password" oninput="validatePassword()" required>
+            <span id="passwordError" style="color: red;"></span><br>
+            confirm password:<input type="password" id="confirmPassword" oninput="validateConfirmPassword()" required>
+            <span id="confirmPasswordError" style="color: red;"></span><br>
+            <button type="submit" value="submit">submit</button>
+        </center>
+    </form>
+    <div id="thankYouMessage" style="display: none;">
+        <center>
+        <h2>Thank you for submitting the form!</h2>
+        <button onclick="redirectToLoginPage()">Go to Login</button></center>
+    </div>
+    <div id="errormessage" style="color:red;display:none">
+       <center>
+       <h2>Check the input correctly</h2>
+    </div>
+    <script>
+    function thanks(event) {
+        event.preventDefault();
+        var thankYouMessage = document.getElementById("thankYouMessage");
+        var errormessage=document.getElementById("errormessage");
+        var isvalid=validateInputs();
+        if(isvalid)
+        {
+            errormessage.style.display="none";
+            thankYouMessage.style.display = "block";
+        }
+        else
+        {
+           thankYouMessage.style.display="none";
+           errormessage.style.display="block";
+        }
+    }
+    function redirectToLoginPage() {
+            window.location.href = 'file:///C:/Users/hp/OneDrive/Desktop/nexusproject/web%20page/login.html';
+        }
+    function validateInputs() {
+            // Perform validation logic
+            var isUsernameValid = validateUsername();
+            var isEmailValid = validateEmail();
+            var isPasswordValid = validatePassword();
+            var isConfirmPasswordValid = validateConfirmPassword();
+
+            // Return true only if all validations pass
+            return isUsernameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid;
+        }
+    function validateUsername()
+    {
+       var uname=document.getElementById("username").value;
+       var unameerror=document.getElementById("usernameError");
+       var unameregex=/[A-Z]/;
+       var isvalid=unameregex.test(uname);
+       unameerror.textContent=isvalid?"":"username should contain atleast one upper case letter";
+       return isvalid;
+    }
+    function validateEmail() {
+            var email = document.getElementById("email").value;
+            var emailError = document.getElementById("emailError");
+
+            // Simple validation: Check if email contains the "@" symbol
+            var emailRegex = /@/;
+            var isValid = emailRegex.test(email);
+
+            // Display error message if validation fails
+            emailError.textContent = isValid ? "" : "Invalid email address";
+
+            return isValid;
+        }
+
+        function validatePassword() {
+            var password = document.getElementById("password").value;
+            var passwordError = document.getElementById("passwordError");
+
+            // You can add more complex password validation logic here
+            var isValid = password.length >= 8; // For example, require a minimum length of 8 characters
+
+            // Display error message if validation fails
+            passwordError.textContent = isValid ? "" : "Password should be at least 8 characters long";
+
+            return isValid;
+        }
+
+        function validateConfirmPassword() {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+            var confirmPasswordError = document.getElementById("confirmPasswordError");
+
+            // Simple validation: Check if passwords match
+            var isValid = password === confirmPassword;
+
+            // Display error message if validation fails
+            confirmPasswordError.textContent = isValid ? "" : "Passwords do not match";
+
+            return isValid;
+        }
+   
+</script>
+</body>
+
+</html>

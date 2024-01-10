@@ -101,10 +101,10 @@
             var confirmPassword = document.getElementById("confirmPassword").value;
             var confirmPasswordError = document.getElementById("confirmPasswordError");
 
-            // Simple validation: Check if passwords match
+            
             var isValid = password === confirmPassword;
 
-            // Display error message if validation fails
+            
             confirmPasswordError.textContent = isValid ? "" : "Passwords do not match";
 
             return isValid;
